@@ -10,4 +10,10 @@
 ## Technologies
 
 * koa
+* angular
 * Sequelize
+* browserify
+* ES6 classes
+* gulp
+* watchify
+* jade

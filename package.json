@@ -15,6 +15,7 @@
     "event-stream": "^3.1.5",
     "facebook-node-sdk": "^0.2.0",
     "fb": "^0.7.0",
+    "font-awesome": "^4.1.0",
     "forever": "^0.11.1",
     "gulp-clean": "^0.3.1",
     "gulp-consolidate": "^0.1.2",
@@ -48,8 +49,10 @@
     "underscore": "^1.6.0"
   },
   "devDependencies": {
+    "napa": "^0.4.1",
     "angular": "^1.2.19",
     "angular-route": "^1.2.17-build.163.1",
+    "bootstrap": "^3.2.0",
     "browserify": "^5.9.1",
     "chai": "^1.9.1",
     "co-urllib": "^0.2.3",
@@ -79,7 +82,11 @@
     "vinyl-source-stream": "^0.1.1",
     "watchify": "^0.10.2"
   },
+  "napa": {
+    "AdminLTE": "almasaeed2010/AdminLTE"
+  },
   "scripts": {
+    "install": "napa",
     "start": "node --harmony app/server/server.js",
     "test": "NODE_ENV=test node --harmony node_modules/.bin/_mocha --reporter spec test/**/*.spec.js"
   }

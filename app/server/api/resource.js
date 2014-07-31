@@ -1,15 +1,6 @@
 var _ = require("underscore");
 module.exports = function (Model, options) {
-
-  function serialize(item) {
-    var serialized = item.toJSON();
-    if (options.fields) {
-      serialized = _.pick(serialized, options.fields);
-    } else if (options.excludeFields) {
-      serialized = _.omit(serialized, options.excludeFields);
-    }
-    return serialized;
-  }
+  options || (options = {});
 
   var resource = {
     list: function* () {
@@ -38,6 +29,16 @@ module.exports = function (Model, options) {
     }
   };
 
-  return resource;
+  function serialize(item) {
+    var serialized = item.toJSON();
+    if (options.fields) {
+      serialized = _.pick(serialized, options.fields);
+    } else if (options.excludeFields) {
+      serialized = _.omit(serialized, options.excludeFields);
+    }
+    return serialized;
+  }
 
+  return resource;
 };
+

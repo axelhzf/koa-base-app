@@ -1,14 +1,15 @@
 var router = require("koa-router");
 var auth = require("./auth");
 
-var indexController = require("./controllers/indexController");
+var controller = require("./controllers/controller");
 var userApi = require("./api/userApi");
 
 var r = new router();
 var logged = auth.ensureAuthenticated;
 
-r.get("/", indexController.index);
-r.get("/private", logged, indexController.private);
+r.get("/", controller.render("index/index"));
+r.get("/private", logged, controller.render("index/private"));
+r.get("/admin", controller.render("admin/admin"));
 
 r.get("auth-fb", "/auth/facebook", auth.routes.auth);
 r.get("/auth/facebook/callback", auth.routes.authCallback);
