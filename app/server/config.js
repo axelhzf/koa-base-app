@@ -14,7 +14,7 @@ var configurations = {
     fb: {
       clientId: process.env.FB_ID,
       clientSecret: process.env.FB_SECRET,
-      callbackUrl: ""
+      callbackUrl: "http://mmtrip.local:3000/auth/facebook/callback"
     },
     logs: {
       path: path.join(__dirname, "../../logs")

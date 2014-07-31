@@ -5,6 +5,7 @@
 * Facebook login
 * Logging
 * Error handlers
+* Named routes
 
 ## Technologies
 

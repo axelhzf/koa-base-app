@@ -70,7 +70,7 @@ function configureAuth (app) {
 exports.routes = {
   auth: passport.authenticate('facebook'),
   authCallback: passport.authenticate('facebook', {
-    successReturnToOrRedirect: '/contest/user',
+    successReturnToOrRedirect: '/private',
     failureRedirect: '/'
   }),
   logout: function* () {

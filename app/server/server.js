@@ -15,6 +15,7 @@ var auth = require("./auth");
 var config = require("./config");
 var logger = require("./logger");
 var db = require("./db");
+var routes = require("./routes");
 
 var app = koa();
 
@@ -35,6 +36,7 @@ app.use(session());
 app.use(flash());
 auth.configure(app);
 
+
 //locals
 app.use(function *(next) {
   this.locals = {
@@ -43,14 +45,14 @@ app.use(function *(next) {
     csrf: this.csrf,
     config: config,
     user: this.passport.user,
-    requestPath: this.request.path
+    requestPath: this.request.path,
+    routeUrl: routes.routeUrl
   };
   yield *next;
 });
 
 //routes
-var routes = require("./routes");
-routes(app);
+routes.configure(app);
 
 
 // server methods
