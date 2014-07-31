@@ -24,6 +24,7 @@ app.use(views('views', {
 }));
 
 mountStatic("/assets", __dirname + '/../assets');
+mountStatic("/assets", __dirname + '/../.assets');
 
 if (config.env === "development") {
   app.use(require("koa-logger")());
@@ -62,6 +63,13 @@ exports.start = function* () {
     yield db.syncAllModels();
   }
   server = app.listen(config.port);
+
+  if (config.env === "development") {
+    var gulp = require("gulp");
+    require("../../gulpfile");
+    gulp.start("watch");
+  }
+
 };
 
 exports.stop = function* () {
