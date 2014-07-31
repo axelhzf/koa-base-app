@@ -2,19 +2,17 @@ section.content-header
   h1 Users
 
 section.content
-  h1 {{message}}
-  input(ng-model="message")
-
-
-  table.table.users(ng-if="users.items.length")
-    thead
-      tr
-        th
-        th
-        th Name
-    tbody
-      tr(ng-repeat="user in users.items")
-        td
-          img(ng-src="{{user.photo}}")
-        td {{user.id}}
-        td {{user.displayName}}
+  .box
+    .box-body.no-padding
+      table.table.users(ng-if="users.items.length")
+        thead
+          tr
+            th ID
+            th
+            th Name
+        tbody
+          tr(ng-repeat="user in users.items")
+            td {{user.id}}
+            td
+              img(ng-src="{{user.photo}}")
+            td {{user.displayName}}
