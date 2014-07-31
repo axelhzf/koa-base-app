@@ -2,6 +2,7 @@ var router = require("koa-router");
 var auth = require("./auth");
 
 var indexController = require("./controllers/indexController");
+var userApi = require("./api/userApi");
 
 var r = new router();
 var logged = auth.ensureAuthenticated;
@@ -12,6 +13,10 @@ r.get("/private", logged, indexController.private);
 r.get("auth-fb", "/auth/facebook", auth.routes.auth);
 r.get("/auth/facebook/callback", auth.routes.authCallback);
 r.get("logout", "/logout", logged, auth.routes.logout);
+
+
+r.get("/api/users", userApi.list);
+r.get("/api/users/:id", userApi.get);
 
 
 exports.configure = function (app) {
