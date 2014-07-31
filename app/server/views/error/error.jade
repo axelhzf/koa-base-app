@@ -3,4 +3,8 @@ block content
   h1 ERROR
 
   if env === "development"
-    .stack #{stack}
+    .stack
+      pre
+        code #{stack}
+
+

@@ -36,13 +36,16 @@ function error(opts) {
           break;
 
         case 'html':
+
+          var stack = err.stack;
+
           yield this.render("error/error", {
             env: env,
             ctx: this,
             request: this.request,
             response: this.response,
             error: err.message,
-            stack: err.stack,
+            stack: stack,
             status: this.status,
             code: err.code
           });
