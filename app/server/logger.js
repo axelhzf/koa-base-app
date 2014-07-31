@@ -1,16 +1,27 @@
+var _ = require("underscore");
 var path = require("path");
-var winston = require("winston");
+var bunyan = require("bunyan");
 var config = require("./config");
 var mkdirp = require("mkdirp");
 
-var logFilename = path.normalize(config.logs.path + "/" + config.name + ".log");
 
+var logFilename = path.normalize(config.logs.path + "/" + config.name + ".log");
 mkdirp(path.normalize(config.logs.path));
 
-winston.remove(winston.transports.Console);
-winston.add(winston.transports.Console, {timestamp: true});
-winston.add(winston.transports.File, { filename: logFilename, timestamp: true, json: true });
+var log = bunyan.createLogger({
+  name: config.name,
+  streams: [
+    {level: 'info', stream: process.stdout},
+    {level: 'info', path: logFilename}
+  ]
+});
 
-winston.info("Writing logging to %s", logFilename);
+// Replace all console logs?
+//console.log = function () {
+//  var msg = _.toArray(arguments).join(", ");
+//  log.info(msg);
+//};
 
-module.exports = winston;
+log.info("Writing logging to %s", logFilename);
+
+module.exports = log;
