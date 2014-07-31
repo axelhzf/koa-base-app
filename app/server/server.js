@@ -24,6 +24,10 @@ app.use(views('views', {
 
 mountStatic("/assets", __dirname + '/../assets');
 
+if (config.env === "development") {
+  app.use(require("koa-logger")());
+}
+
 app.use(require("./error")());
 app.use(koaBody());
 app.keys = config.keys;
