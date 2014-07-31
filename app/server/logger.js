@@ -4,7 +4,6 @@ var bunyan = require("bunyan");
 var config = require("./config");
 var mkdirp = require("mkdirp");
 
-
 var logFilename = path.normalize(config.logs.path + "/" + config.name + ".log");
 mkdirp(path.normalize(config.logs.path));
 

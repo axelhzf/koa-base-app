@@ -1,15 +1,15 @@
 var co = require("co");
-var config = require("./config");
 var passport = require('koa-passport');
-var User = require("./models/User");
 var FacebookStrategy = require('passport-facebook').Strategy;
 var thunkify = require("thunkify");
-
-
 var Facebook = require('facebook-node-sdk');
+
+var config = require("./config");
+var User = require("./models/User");
+var logger = require("./logger").child({"feature": "auth"});
+
 var facebook = new Facebook({ appID: config.fb.clientId, secret: config.fb.clientSecret });
 var fb = thunkify(facebook.api.bind(facebook));
-
 
 exports.configure = configureAuth;
 exports.ensureAuthenticated = ensureAuthenticated;
@@ -43,6 +43,9 @@ function configureAuth (app) {
           // refresh access token
           user.accessToken = accessToken;
           yield user.save();
+
+          logger.info("Login existing user %s", user.id);
+
           return user;
         } else {
           var response = yield fb("/me", {fields: 'picture.type(large), email', access_token: accessToken});
@@ -55,8 +58,10 @@ function configureAuth (app) {
             photo: response.picture.data.url,
             email: response.email
           };
-
           user = yield User.create(userData);
+
+          logger.info("New user log in %s", userData.email);
+
           return user;
         }
       })(done);
