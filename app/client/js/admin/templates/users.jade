@@ -16,3 +16,11 @@ section.content
             td
               img(ng-src="{{user.photo}}")
             td {{user.displayName}}
+
+
+      .box-footer.center.pagination-footer
+        ul.pagination.pagination-sm
+          li: a(ng-click="users.findPreviousPage()") «
+          li(ng-repeat="page in users.pages")
+            a(ng-click="users.findPage(page)", ng-class="{'active': page === users.currentPage}") {{page + 1}}
+          li: a(ng-click="users.findNextPage()") »
