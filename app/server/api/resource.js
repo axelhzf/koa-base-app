@@ -6,13 +6,15 @@ module.exports = function (Model, options) {
     list: function* () {
       var limit = parseInt(this.query.limit, 10) || 5;
       var offset = parseInt(this.query.offset, 10) || 0;
+      var order = this.query.order;
 
-      var users = yield Model.findAndCountAll({limit: limit, offset: offset});
+      var users = yield Model.findAndCountAll({limit: limit, offset: offset, order: order});
 
       var result = {
         limit: limit,
         offset: offset,
         total: users.count,
+        order: order,
         items: _.map(users.rows, serialize)
       };
 

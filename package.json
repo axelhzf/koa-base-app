@@ -10,6 +10,7 @@
     "co-mysql": "~0.4.1",
     "co-parallel": "^1.0.0",
     "co-request": "^0.2.0",
+    "cron": "^1.0.4",
     "csrf-tokens": "^2.0.0",
     "debug": "^1.0.1",
     "event-stream": "^3.1.5",
@@ -46,6 +47,8 @@
     "save-to": "^1.0.3",
     "sequelize": "^1.7.8",
     "thunkify": "^2.1.2",
+    "time": "^0.11.0",
+    "twit": "^1.1.18",
     "underscore": "^1.6.0"
   },
   "devDependencies": {

@@ -16,6 +16,13 @@ var configurations = {
       clientSecret: process.env.FB_SECRET,
       callbackUrl: "http://mmtrip.local:3000/auth/facebook/callback"
     },
+    twitter: {
+      consumer_key: process.env.TWITTER_CONSUMER_SECRET,
+      consumer_secret: process.env.TWITTER_CONSUMER_KEY,
+      access_token: process.env.TWITTER_ACCESS_TOKEN,
+      access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+      queries: ["#nodejs"]
+    },
     logs: {
       path: path.join(__dirname, "../../logs")
     },

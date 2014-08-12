@@ -16,6 +16,7 @@ var config = require("./config");
 var logger = require("./logger");
 var db = require("./db");
 var routes = require("./routes");
+var cron = require("./cron");
 
 var app = koa();
 

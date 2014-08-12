@@ -3,6 +3,7 @@ var auth = require("./auth");
 
 var controller = require("./controllers/controller");
 var userApi = require("./api/userApi");
+var tweetApi = require("./api/tweetApi");
 
 var r = new router();
 var logged = auth.ensureAuthenticated;
@@ -18,7 +19,8 @@ r.get("logout", "/logout", logged, auth.routes.logout);
 
 r.get("/api/users", userApi.list);
 r.get("/api/users/:id", userApi.get);
-
+r.get("/api/tweets", tweetApi.list);
+r.get("/api/tweets/:id", tweetApi.get);
 
 exports.configure = function (app) {
   app.use(notFound);
